@@ -1,6 +1,6 @@
 #ifndef GRAPH_H_INCLUDED
 #define GRAPH_H_INCLUDED
-
+#include <iostream>
 /**************************************************************
     Ici sont proposées 3 classes fondamentales
             Vertex (=Sommet)
@@ -70,7 +70,7 @@
     pas une interface de présentation associée aux datas (découplage données/interface)
 
 ***********************************************************************************************/
-
+#include <fstream>
 #include <vector>
 #include <map>
 #include <string>
@@ -308,6 +308,11 @@ class Graph
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
         void update();
+        void charger_fichier(std::string nom);
+
+        /// Save
+        void save(std::string nom);
+
 };
 
 

@@ -1,4 +1,5 @@
 #include "graph.h"
+#include "sstream"
 
 /***************************************************
                     VERTEX
@@ -159,11 +160,12 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 void Graph::make_example()
 {
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+    charger_fichier("file.txt");
     // La ligne précédente est en gros équivalente à :
     // m_interface = new GraphInterface(50, 0, 750, 600);
 
     /// Les sommets doivent être définis avant les arcs
-    // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
+    /*Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
     add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
     add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
     add_interfaced_vertex(2,  50.0, 200, 300, "clown3.jpg");
@@ -184,7 +186,7 @@ void Graph::make_example()
     add_interfaced_edge(6, 3, 4, 0.0);
     add_interfaced_edge(7, 2, 0, 100.0);
     add_interfaced_edge(8, 5, 2, 20.0);
-    add_interfaced_edge(9, 3, 7, 80.0);
+    add_interfaced_edge(9, 3, 7, 80.0);*/
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
@@ -243,5 +245,62 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
     m_interface->m_main_box.add_child(ei->m_top_edge);
     m_edges[idx] = Edge(weight, ei);
+
+    m_edges[idx].m_from = id_vert1;
+    m_edges[idx].m_to = id_vert2;
+
+    m_vertices[id_vert1].m_out.push_back(idx);
+    m_vertices[id_vert2].m_in.push_back(idx);
 }
 
+void Graph::charger_fichier(std::string nom )
+{
+    std::ifstream file(nom, std::ios::in);
+    int x,y, nbimage, nbarrete, a1, a2;
+    std::string nomimage;
+
+    if(file)
+    {
+        file>>nbimage;
+        for(unsigned int i=0; i<nbimage; i++)
+        {
+            file>>x , file>>y, file>>nomimage;
+    add_interfaced_vertex(i, 0,x,y, nomimage);
+        }
+        file>>nbarrete;
+        for (unsigned int i=0; i<nbarrete; i++)
+        {
+            file>>a1, file>>a2;
+            add_interfaced_edge(i, a1, a2, 50);
+        }
+    }
+    else std::cout << "erreur lors du chargement" << std::endl;
+
+    file.close();
+
+}
+
+void Graph::save(std::string nom)
+{
+    std::ofstream file(nom, std::ios::out | std::ios::trunc);
+
+    if (file)
+    {
+        file << m_vertices.size() << std::endl;
+
+        for(unsigned int i=0 ; i<m_vertices.size(); i++)
+        {
+            file << m_vertices[i].m_interface->m_top_box.get_posx() << " " << m_vertices[i].m_interface->m_top_box.get_posy() << " " << m_vertices[i].m_interface->m_img.get_pic_name() << std::endl;
+        }
+
+        file << m_edges.size();
+
+        for (unsigned int i = 0; i < m_edges.size(); i++)
+        {
+            file << m_edges[i].m_from << " " << m_edges[i].m_to << std::endl;
+        }
+    }
+    else std::cout << "erreur lors de la sauvegarde" << std::endl;
+
+    file.close();
+}

@@ -1,27 +1,30 @@
 # depslib dependency file v1.0
-1522764360 source:c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\graph.cpp
+1522760595 source:c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\grman\coords.cpp
+	"coords.h"
+
+1522760595 c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\grman\coords.h
+	<cmath>
+
+1522760595 source:c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\graph.cpp
 	"graph.h"
 
-1522764360 c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\graph.h
+1522760595 c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\graph.h
 	<vector>
 	<map>
 	<string>
 	<memory>
 	"grman/grman.h"
 
-1522764360 c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\grman\grman.h
+1522760595 c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\grman\grman.h
 	<allegro.h>
 	<string>
 	"grman_couleurs.h"
 	"coords.h"
 	"widget.h"
 
-1522764360 c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\grman\grman_couleurs.h
+1522760595 c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\grman\grman_couleurs.h
 
-1522764360 c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\grman\coords.h
-	<cmath>
-
-1522764361 c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\grman\widget.h
+1522760595 c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\grman\widget.h
 	"grman.h"
 	<iostream>
 	<string>
@@ -29,13 +32,82 @@
 	<algorithm>
 	<allegro.h>
 
-1522764360 source:c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\grman\coords.cpp
-	"coords.h"
+1522760595 source:c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
 
-1522764360 source:c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\grman\widget.cpp
+1522760595 source:c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
 
-1522764360 source:c:\users\helene cazenave\downloads\graph_lib_v1\graph_lib_exemple_graph\main.cpp
+1522760595 source:c:\users\clement lurati\desktop\graph_lib_v1\graph_lib_exemple_graph\main.cpp
+	"grman/grman.h"
+	<iostream>
+	"graph.h"
+
+1522888778 source:c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\graph.cpp
+	"graph.h"
+	"sstream"
+
+1522888477 c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\graph.h
+	<iostream>
+	<fstream>
+	<vector>
+	<map>
+	<string>
+	<memory>
+	"grman/grman.h"
+
+1522760595 c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman.h
+	<allegro.h>
+	<string>
+	"grman_couleurs.h"
+	"coords.h"
+	"widget.h"
+
+1522760595 c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman_couleurs.h
+
+1522760595 c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\grman\coords.h
+	<cmath>
+
+1522888417 c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\grman\widget.h
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+
+1522760595 source:c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\grman\coords.cpp
+	"coords.h"
+
+1522760595 source:c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+
+1522760595 source:c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\grman\widget.cpp
+	"widget.h"
+
+1522891819 source:c:\users\clement lurati\desktop\piscine\graph_lib_v1\graph_lib_exemple_graph\main.cpp
 	"grman/grman.h"
 	<iostream>
 	"graph.h"
