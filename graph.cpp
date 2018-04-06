@@ -149,18 +149,28 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_main_box.set_dim(908,720);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
     m_main_box.set_bg_color(BLANCJAUNE);
+
+    m_tool_box.add_child(m_save_box);
+    m_save_box.set_pos(-10,50);
+    m_save_box.set_dim(100,100);
+    m_save.set_dim(100,100);
+    m_save_image.set_pic_name("sauvegarde.bmp");
+    m_save.add_child(m_save_image);
+    m_save_box.add_child(m_save);
 }
 
 
 /// Méthode spéciale qui construit un graphe arbitraire (démo)
 /// Cette méthode est à enlever et remplacer par un système
 /// de chargement de fichiers par exemple.
-/// Bien sûr on ne veut pas que vos graphes soient construits
+/// Bien sûr on neC:\Users\Clement Lurati\Desktop\Piscine\graph_lib_v1\graph_lib_exemple_graph\images.txt veut pas que vos graphes soient construits
 /// "à la main" dans le code comme ça.
 void Graph::make_example()
-{
+    {
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
-    charger_fichier("file.txt");
+    charger_fichier("images.txt");
+    }
+    //charger_fichier("file.txt");
     // La ligne précédente est en gros équivalente à :
     // m_interface = new GraphInterface(50, 0, 750, 600);
 
@@ -187,7 +197,7 @@ void Graph::make_example()
     add_interfaced_edge(7, 2, 0, 100.0);
     add_interfaced_edge(8, 5, 2, 20.0);
     add_interfaced_edge(9, 3, 7, 80.0);*/
-}
+
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
 void Graph::update()
@@ -208,6 +218,9 @@ void Graph::update()
 
     for (auto &elt : m_edges)
         elt.second.post_update();
+
+   /* if  (m_interface->m_save.clicked())
+        save();*/
 
 }
 
@@ -304,3 +317,66 @@ void Graph::save(std::string nom)
 
     file.close();
 }
+
+
+/*void Graph::test_remove_edge(int eidx)
+{
+/// référence vers le Edge à enlever
+Edge &remed=m_edges.at(eidx);
+
+std::cout << "Removing edge " << eidx << " " << remed.m_from << "->" << remed.m_to << " " << remed.m_weight << std::endl;
+
+/// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
+std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
+std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
+std::cout << m_edges.size() << std::endl;
+
+/// test : on a bien des éléments interfacés
+if (m_interface && remed.m_interface)
+{
+/// Ne pas oublier qu'on a fait ça à l'ajout de l'arc :
+///EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
+///m_interface->m_main_box.add_child(ei->m_top_edge);
+/// m_edges[idx] = Edge(weight, ei);
+/// Le new EdgeInterface ne nécessite pas de delete car on a un shared_ptr
+/// Le Edge ne nécessite pas non plus de delete car on n'a pas fait de new (sémantique par valeur)
+/// mais il faut bien enlever le conteneur d'interface m_top_edge de l'arc de la main_box du graphe
+ m_interface->m_main_box.remove_child( remed.m_interface->m_top_edge );
+}
+
+/// Il reste encore à virer l'arc supprimé de la liste des entrants et sortants des 2 sommets to et from !
+/// References sur les listes de edges des sommets from et to
+std::vector<int> &vefrom = m_vertices[remed.m_from].m_out;
+std::vector<int> &veto = m_vertices[remed.m_to].m_in;
+vefrom.erase( std::remove( vefrom.begin(), vefrom.end(), eidx ), vefrom.end() );
+veto.erase( std::remove( veto.begin(), veto.end(), eidx ), veto.end() );
+
+/// Le Edge ne nécessite pas non plus de delete car on n'a pas fait de new (sémantique par valeur)
+/// Il suffit donc de supprimer l'entrée de la map pour supprimer à la fois l'Edge et le EdgeInterface
+/// mais malheureusement ceci n'enlevait pas automatiquement l'interface top_edge en tant que child de main_box !
+m_edges.erase( eidx );
+
+/// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
+std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
+std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
+std::cout << m_edges.size() << std::endl;
+
+}
+void Graph::Suppr()
+{
+    int sommet;
+
+    m_interface->m_top_box.update();
+
+    std::cout<<"Quel sommet souhaitez vous suprimer?" << std::endl;
+    std::cin>> sommet;
+
+    for(auto& elem:m_edges)
+    {
+        if((elem.second.m_to==sommet)||(elem.second.m_from==sommet))
+        {
+            test_remove_edge(elem.first);
+        }
+    }
+}*/
+

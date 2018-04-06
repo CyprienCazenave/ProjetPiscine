@@ -98,7 +98,6 @@ class VertexInterface
 
         // La boite qui contient toute l'interface d'un sommet
         grman::WidgetBox m_top_box;
-
         // Un slider de visualisation/modification de la valeur du sommet
         grman::WidgetVSlider m_slider_value;
 
@@ -262,8 +261,9 @@ class GraphInterface
 
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
-
-
+        grman::WidgetBox m_save_box;
+        grman::WidgetButton m_save;
+        grman::WidgetImage m_save_image;
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)
 
@@ -312,6 +312,8 @@ class Graph
 
         /// Save
         void save(std::string nom);
+        //void test_remove_edge(int eidx);
+        //void Suppr();
 
 };
 

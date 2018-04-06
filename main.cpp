@@ -16,9 +16,8 @@ int main()
     BITMAP *buffer;
     buffer=create_bitmap(SCREEN_W,SCREEN_H);
     clear_bitmap(buffer);
-
-    /// Le nom du répertoire où se trouvent les images à charger
-    grman::set_pictures_path("pics");
+BITMAP* bye=load_bitmap("bye.bmp",NULL);
+    grman::set_pictures_path("images");
 
     page=load_bitmap("t.bmp",NULL);
 
@@ -32,39 +31,59 @@ int main()
 
 
     /// Un exemple de graphe
-    Graph g;
-    g.make_example();
+
+Graph g;
+g.make_example();
+
 
 
 
     /// ( contrairement à des frameworks plus avancés )
     while ( !key[KEY_ESC])
     {
-
-        while(!key[KEY_ENTER] && (b !=1))
-        {
-            blit(page,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-            blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-
-            if(mouse_b&1)
+        while(!key[KEY_ENTER]&&(b!=1))
             {
-                if (mouse_x>40&&mouse_y>380&&mouse_x<66&&mouse_y<402)
-                    return 0;
-            }
+                std::cout << "coucou" << std::endl;
 
-    }
+                blit(page,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
+                //blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+
+                if(mouse_b&1)
+                {
+                    if (mouse_x>40&&mouse_y>380&&mouse_x<66&&mouse_y<402)
+                        blit(bye,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
+                       // return 0;
+                }
+               /*if(mouse_b&1)
+                {
+                    if (mouse_x>106&&mouse_y>276&&mouse_x<222&&mouse_y<316)
+
+
+
+                }
+                /*if(mouse_b&1)
+                {
+                    if (mouse_x>40&&mouse_y>380&&mouse_x<66&&mouse_y<402)
+                        return 0;
+                }*/
+
+
+            }
+                b=1;
+
+
+
     ///déclaration des variables
 
 
 
-    b=1;
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         g.update();
 
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
-    }
 
+    }
     grman::fermer_allegro();
 
     return 0;

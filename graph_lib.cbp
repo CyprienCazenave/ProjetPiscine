@@ -38,6 +38,7 @@
 			<Add library="jpgalleg" />
 			<Add library="alleg44.dll" />
 		</Linker>
+		<Unit filename="file.txt" />
 		<Unit filename="graph.cpp" />
 		<Unit filename="graph.h" />
 		<Unit filename="grman/coords.cpp" />
@@ -47,6 +48,7 @@
 		<Unit filename="grman/grman_couleurs.h" />
 		<Unit filename="grman/widget.cpp" />
 		<Unit filename="grman/widget.h" />
+		<Unit filename="images.txt" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
