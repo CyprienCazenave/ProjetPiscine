@@ -1,10 +1,10 @@
 6
-200 100 anaconda.bmp
-400 100 jaguar.bmp
-200 300 tapir.bmp
-400 300 fourmis.bmp
-600 300 caiman.bmp
-100 500 piranha.bmp
+24 33 anaconda.bmp
+618 21 jaguar.bmp
+34 356 tapir.bmp
+319 443 fourmis.bmp
+672 559 caiman.bmp
+24 552 piranha.bmp
 8
 0 4
 0 1

@@ -3,86 +3,83 @@
 
 #include "graph.h"
 
-int main()
+void menu(Graph &g, bool *prog, bool *prog2)
 {
-    /// A appeler en 1er avant d'instancier des objets graphiques etc...
-    grman::init();
+    bool work = true;
 
-    int a=0;
-    int b=0;
-
-
-    BITMAP *page;
-    BITMAP *buffer;
-    buffer=create_bitmap(SCREEN_W,SCREEN_H);
-    clear_bitmap(buffer);
-BITMAP* bye=load_bitmap("bye.bmp",NULL);
-    grman::set_pictures_path("images");
-
-    page=load_bitmap("t.bmp",NULL);
+    BITMAP* page = load_bitmap("t.bmp",NULL);
+    BITMAP* buffer = create_bitmap(800,600);
 
     if(!page)
-
     {
         allegro_message("pas trouver image");
         exit(EXIT_FAILURE);
     }
 
+    clear_bitmap(buffer);
 
-
-    /// Un exemple de graphe
-
-Graph g;
-g.make_example();
-
-
-
-
-    /// ( contrairement à des frameworks plus avancés )
-    while ( !key[KEY_ESC])
+    while(work)
     {
-        while(!key[KEY_ENTER]&&(b!=1))
+        blit(page,buffer,0,0,0,0,800,600);
+
+        if(mouse_b&1)
+        {
+            if (mouse_x>42&&mouse_y>503&&mouse_x<209&&mouse_y<550)
             {
-                std::cout << "coucou" << std::endl;
 
-                blit(page,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-                //blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-
-                if(mouse_b&1)
-                {
-                    if (mouse_x>40&&mouse_y>380&&mouse_x<66&&mouse_y<402)
-                        blit(bye,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-                       // return 0;
-                }
-               /*if(mouse_b&1)
-                {
-                    if (mouse_x>106&&mouse_y>276&&mouse_x<222&&mouse_y<316)
-
-
-
-                }
-                /*if(mouse_b&1)
-                {
-                    if (mouse_x>40&&mouse_y>380&&mouse_x<66&&mouse_y<402)
-                        return 0;
-                }*/
-
-
+                g.charger_fichier("images.txt");
+                work = false;
+                g.set_choix(1);
             }
-                b=1;
+
+            if (mouse_x>305&&mouse_y>503&&mouse_x<471&&mouse_y<550)
+            {
+                g.charger_fichier("file.txt");
+                work = false;
+                g.set_choix(2);
+            }
+            if (mouse_x>561&&mouse_y>503&&mouse_x<721&&mouse_y<550)
+            {
+                g.charger_fichier("image.txt");
+                work = false;
+                g.set_choix(3);
+            }
+
+            if(mouse_x > 25 && mouse_y > 30 && mouse_x < 90 && mouse_y < 71)
+                exit (EXIT_FAILURE);
+        }
+
+         blit(buffer,screen,0,0,0,0,800,600);
+    }
+    *prog2=true;
+}
+
+int main()
+{
+    /// A appeler en 1er avant d'instancier des objets graphiques etc...
+    grman::init();
+    grman::set_pictures_path("pics");
 
 
+    Graph g;
+    g.make_example();
+    bool prog = true;
+    bool prog2 = true;
 
-    ///déclaration des variables
 
+    while (prog)
+    {
+        menu(g, &prog, &prog2);
 
+        while(!key[KEY_ESC] && prog2)
+        {
+            /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
+            g.update(&prog2);
 
-        /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
-        g.update();
-
-        /// Mise à jour générale (clavier/souris/buffer etc...)
-        grman::mettre_a_jour();
-
+            /// Mise à jour générale (clavier/souris/buffer etc...)
+            grman::mettre_a_jour();
+        }
+        g.videVecteur();
     }
     grman::fermer_allegro();
 

@@ -261,11 +261,14 @@ class GraphInterface
 
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
+
         grman::WidgetBox m_save_box;
         grman::WidgetButton m_save;
         grman::WidgetImage m_save_image;
-        // A compléter éventuellement par des widgets de décoration ou
-        // d'édition (boutons ajouter/enlever ...)
+
+        grman::WidgetBox m_retour_box;
+        grman::WidgetButton m_retour;
+        grman::WidgetImage m_retour_image;
 
     public :
 
@@ -288,6 +291,8 @@ class Graph
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<GraphInterface> m_interface = nullptr;
 
+        int m_choix;
+
 
     public:
 
@@ -303,18 +308,19 @@ class Graph
         /// Voir implémentation dans le .cpp
         /// Cette méthode est à enlever et remplacer par un système
         /// de chargement de fichiers par exemple.
-        void make_example();
 
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
-        void update();
+        void update(bool *prog2);
         void charger_fichier(std::string nom);
 
         /// Save
-        void save(std::string nom);
-        //void test_remove_edge(int eidx);
-        //void Suppr();
-
+        void save();
+        void test_remove_edge(int eidx);
+        void Suppr();
+        void make_example();
+        void set_choix(int i) {m_choix = i;}
+        void videVecteur();
 };
 
 
