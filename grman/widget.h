@@ -84,7 +84,7 @@ class Widget
 
         /// Gestion familiale... navigation et édition de l'arbre des sous-éléments...
         Widget *get_child(int i) { return m_children.at(i); }
-        void add_child(Widget &elt) { elt.set_parent(this); m_children.push_back(&elt); elt.reframe(); }
+        void add_child(Widget &elt) { elt.set_parent(this); m_children.push_back(&elt); elt.reframe();}
         void remove_child(Widget &elt) { m_children.erase( std::remove( m_children.begin(), m_children.end(), &elt ), m_children.end() ); }
         void reframe();
 
@@ -338,6 +338,7 @@ class WidgetImage : public Widget
         void set_animate_tempo(int tempo) { m_animate_tempo = tempo; }
 
         void set_pic_idx(int pic_idx) { m_pic_idx=pic_idx; }
+        std::string get_pic_name() {return m_pic_name;}
 };
 
 

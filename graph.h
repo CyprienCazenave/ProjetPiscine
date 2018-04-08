@@ -1,6 +1,6 @@
 #ifndef GRAPH_H_INCLUDED
 #define GRAPH_H_INCLUDED
-
+#include <iostream>
 /**************************************************************
     Ici sont proposées 3 classes fondamentales
             Vertex (=Sommet)
@@ -70,7 +70,7 @@
     pas une interface de présentation associée aux datas (découplage données/interface)
 
 ***********************************************************************************************/
-
+#include <fstream>
 #include <vector>
 #include <map>
 #include <string>
@@ -98,7 +98,6 @@ class VertexInterface
 
         // La boite qui contient toute l'interface d'un sommet
         grman::WidgetBox m_top_box;
-
         // Un slider de visualisation/modification de la valeur du sommet
         grman::WidgetVSlider m_slider_value;
 
@@ -263,9 +262,34 @@ class GraphInterface
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
 
+        grman::WidgetBox m_save_box;
+        grman::WidgetButton m_save;
+        grman::WidgetImage m_save_image;
 
-        // A compléter éventuellement par des widgets de décoration ou
-        // d'édition (boutons ajouter/enlever ...)
+        grman::WidgetBox m_retour_box;
+        grman::WidgetButton m_retour;
+        grman::WidgetImage m_retour_image;
+
+        grman::WidgetBox m_sup_box;
+        grman::WidgetButton m_sup;
+        grman::WidgetImage m_sup_image;
+
+        grman::WidgetBox m_aj_box;
+        grman::WidgetButton m_aj;
+        grman::WidgetImage m_aj_image;
+
+        grman::WidgetBox m_ajs_box;
+        grman::WidgetButton m_ajs;
+        grman::WidgetImage m_ajs_image;
+
+        grman::WidgetBox m_sups_box;
+        grman::WidgetButton m_sups;
+        grman::WidgetImage m_sups_image;
+
+        grman::WidgetBox m_supa_box;
+        grman::WidgetButton m_supa;
+        grman::WidgetImage m_supa_image;
+
 
     public :
 
@@ -288,6 +312,8 @@ class Graph
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<GraphInterface> m_interface = nullptr;
 
+        int m_choix;
+
 
     public:
 
@@ -303,11 +329,23 @@ class Graph
         /// Voir implémentation dans le .cpp
         /// Cette méthode est à enlever et remplacer par un système
         /// de chargement de fichiers par exemple.
-        void make_example();
 
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
-        void update();
+        void update(bool *prog2);
+        void charger_fichier(std::string nom);
+
+        /// Save
+        void save();
+        void test_remove_edge(int eidx);
+        void test_remove_vertex(int vidx);
+        void make_example();
+        void set_choix(int i) {m_choix = i;}
+        void videVecteur();
+        void Ajoutarcs();
+        void ajoutSommet();
+        void retirerSommet();
+        void retirerArc();
 };
 
 
